@@ -7,8 +7,7 @@ services:
       - ./data/marzban/run:/run
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       - "./www:/www"
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro      
+
 
   marzban-node:
     image: gozargah/marzban-node:latest
@@ -18,13 +17,14 @@ services:
     environment:
       SSL_CLIENT_CERT_FILE: "/var/lib/marzban/ssl_client_cert.pem"
       XRAY_EXECUTABLE_PATH: "/var/lib/marzban/xray-core/xray"
+      - TZ=Asia/Tehran
+      - DEBIAN_FRONTEND=noninteractive      
 
     volumes:
       - /var/lib/marzban-node:/var/lib/marzban-node
       - ./data:/var/lib/marzban
       - ./data/marzban/run:/run
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro
+
 
 
 
