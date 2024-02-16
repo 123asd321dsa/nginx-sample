@@ -10,7 +10,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
 
-  marzban-node:
+  marzban-node-1:
     image: gozargah/marzban-node:latest
     restart: always
 
@@ -37,7 +37,7 @@ services:
 
 
 
-  marzban-node:
+  marzban-node-2:
     image: gozargah/marzban-node:latest
     restart: always
 
