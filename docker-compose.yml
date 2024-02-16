@@ -13,10 +13,9 @@ services:
   marzban-node:
     image: gozargah/marzban-node:latest
     restart: always
-    network_mode: host
 
     environment:
-      SSL_CLIENT_CERT_FILE: "/var/lib/marzban/ssl_client_cert.pem"
+      SSL_CLIENT_CERT_FILE: "/var/lib/marzban/ssl_client_cert1.pem"
       XRAY_EXECUTABLE_PATH: "/var/lib/marzban/xray-core/xray"
 
     volumes:
@@ -25,3 +24,39 @@ services:
       - ./data/marzban/run:/run
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
+
+    ports:
+      - 2000:62050
+      - 2001:62051
+      - 40400:40400
+      - 11000:11000
+      - 2053:2053
+      - 2087:2087
+      - 443:443
+      - 10800:10800
+
+
+
+  marzban-node:
+    image: gozargah/marzban-node:latest
+    restart: always
+
+    environment:
+      SSL_CLIENT_CERT_FILE: "/var/lib/marzban/ssl_client_cert2.pem"
+      XRAY_EXECUTABLE_PATH: "/var/lib/marzban/xray-core/xray"
+
+    volumes:
+      - /var/lib/marzban-node:/var/lib/marzban-node
+      - ./data:/var/lib/marzban
+      - ./data/marzban/run:/run
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
+    ports:
+      - 3000:62050
+      - 3001:62051
+      - 8443:8443
+      - 10900:10900
+      - 3005:3005
+      - 3006:3006
+      - 3007:3007
